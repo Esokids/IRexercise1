@@ -1,11 +1,19 @@
+import java.io.IOException;
+import java.net.*;
 import java.util.*;
 public class Main {
     static ArrayList<Token> posting = new ArrayList<>();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Tokenizing and Preprocessing
         String delim = "\\ |\\;|\\:|\\.";
-        StringTokenizer doc1 = new StringTokenizer(ReadFile.readFile("Doc1.txt"),delim);
-        StringTokenizer doc2 = new StringTokenizer(ReadFile.readFile("Doc2.txt"),delim);
+
+        //Read from file
+//        StringTokenizer doc1 = new StringTokenizer(ReadFile.readFile("Doc1.txt"),delim);
+//        StringTokenizer doc2 = new StringTokenizer(ReadFile.readFile("Doc2.txt"),delim);
+
+        //Read from URL
+        StringTokenizer doc1 = new StringTokenizer(ReadFile.readURL(new URL("http://do9.xyz/proxy2.txt?fbclid=IwAR1htIryqavNnGlXHW-Qg8Cwasq-8Nvx-cixejoIfYQzd3B-vDaJNlqoDLE")),delim);
+        StringTokenizer doc2 = new StringTokenizer(ReadFile.readURL(new URL("http://do9.xyz/proxy1.txt?fbclid=IwAR1mC2BbkvJTRWE4SGseFdIPFf3_DIt-RKjGeBD_MMBHHwhpvJukHtj3Gps")),delim);
 
         // Delete duplicate words.
         Set<String> term1 = setTerm(doc1);
