@@ -40,7 +40,6 @@ public class Main {
             System.out.println(e);
     }
 
-
     static void genaratePosting(Set<String> term, int docID){
         for(String e : term)
             posting.add(new Token(e,docID));
