@@ -1,10 +1,6 @@
-import com.sun.xml.internal.ws.binding.FeatureListUtil;
-
-import java.io.IOException;
+import java.io.*;
 import java.net.*;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.lang.Object;
 
 public class Main {
     static ArrayList<Token> posting = new ArrayList<>();
