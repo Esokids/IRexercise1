@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.*;
 import java.util.*;
 
@@ -46,6 +47,7 @@ public class Main {
 //        list2.add(4);
 //
 //        System.out.println(intersect(list1,list2));
+//        System.out.println(anotherIntersect(list1,list2));
 
         // Printing All posting arr
 //        for(Token e : posting)
@@ -88,5 +90,10 @@ public class Main {
                 result.add(e);
         }
         return result;
+    }
+
+    public static <T> ArrayList<T> anotherIntersect(ArrayList<T> list1, ArrayList<T> list2){
+        list1.retainAll(list2);
+        return list1;
     }
 }
