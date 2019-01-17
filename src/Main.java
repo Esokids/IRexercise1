@@ -1,6 +1,11 @@
+import com.sun.xml.internal.ws.binding.FeatureListUtil;
+
 import java.io.IOException;
 import java.net.*;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.lang.Object;
+
 public class Main {
     static ArrayList<Token> posting = new ArrayList<>();
     static ArrayList<Posting> postingList = new ArrayList<>();
@@ -31,13 +36,28 @@ public class Main {
         //Create posting lists, determine document frequency
         createPostingsLists(postingList);
 
+        //Intersect
+//        ArrayList<Integer> list1 = new ArrayList<>();
+//        ArrayList<Integer> list2 = new ArrayList<>();
+//        list1.add(1);
+//        list1.add(2);
+//        list1.add(3);
+//        list1.add(4);
+//
+//        list2.add(1);
+//        list2.add(3);
+//        list2.add(5);
+//        list2.add(4);
+//
+//        System.out.println(intersect(list1,list2));
+
         // Printing All posting arr
 //        for(Token e : posting)
 //            System.out.println(e);
 
         // Printing All postingList arr
-        for(Posting e : postingList)
-            System.out.println(e);
+//        for(Posting e : postingList)
+//            System.out.println(e);
     }
 
     static void genaratePosting(Set<String> term, int docID){
@@ -63,5 +83,14 @@ public class Main {
             if(flag == false)
                 postingList.add(new Posting(e.getTerm(),e.getDocID()));
         }
+    }
+
+    public static <Integer> ArrayList<Integer> intersect(ArrayList<Integer> list1, ArrayList<Integer> list2){
+        ArrayList<Integer> result = new ArrayList<>();
+        for(Integer e : list1) {
+            if (list2.contains(e))
+                result.add(e);
+        }
+        return result;
     }
 }
