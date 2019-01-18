@@ -7,55 +7,42 @@ public class Main {
     static ArrayList<Token> posting = new ArrayList<>();
     static ArrayList<Posting> postingList = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // Tokenizing and Preprocessing
         String delim = "\\ |\\;|\\:|\\.";
 
-        // Read from file
-        StringTokenizer doc1 = new StringTokenizer(ReadFile.readFile("Doc1.txt"),delim);
-        StringTokenizer doc2 = new StringTokenizer(ReadFile.readFile("Doc2.txt"),delim);
+        // Generate name of files.
+        String path[] = new String[100];
+        for(int i = 0; i < path.length ; i++)
+            path[i] = "Doc"+(i+1)+".txt";
 
-        // Read from URL
-//        StringTokenizer doc1 = new StringTokenizer(ReadFile.readURL(new URL("http://do9.xyz/proxy2.txt?fbclid=IwAR1htIryqavNnGlXHW-Qg8Cwasq-8Nvx-cixejoIfYQzd3B-vDaJNlqoDLE")),delim);
-//        StringTokenizer doc2 = new StringTokenizer(ReadFile.readURL(new URL("http://do9.xyz/proxy1.txt?fbclid=IwAR1mC2BbkvJTRWE4SGseFdIPFf3_DIt-RKjGeBD_MMBHHwhpvJukHtj3Gps")),delim);
+        // Read from file
+        StringTokenizer doc[] = new StringTokenizer[100];
+        for(int i = 0 ; i<path.length ; i++)
+            doc[i] = new StringTokenizer(ReadFile.readFile(path[i]), delim);
+
+        // Test show token
+        for(int i = 0 ; i<doc.length ; i++){
+            if(doc[i].countTokens()==0)
+                continue;
+            while (doc[i].hasMoreTokens())
+                System.out.print(doc[i].nextToken() + " ");
+            System.out.println();
+        }
 
         // Delete duplicate words.
-        Set<String> term1 = setTerm(doc1);
-        Set<String> term2 = setTerm(doc2);
+//        Set<String> term1 = setTerm(doc1);
+//        Set<String> term2 = setTerm(doc2);
 
         // Generate posting
-        genaratePosting(term1,1);
-        genaratePosting(term2,2);
+//        genaratePosting(term1,1);
+//        genaratePosting(term2,2);
 
         // Sorting
         posting.sort(Comparator.comparing(Token::getTerm));
 
         //Create posting lists, determine document frequency
         createPostingsLists(postingList);
-
-        //Intersect
-//        ArrayList<Integer> list1 = new ArrayList<>();
-//        ArrayList<Integer> list2 = new ArrayList<>();
-//        list1.add(1);
-//        list1.add(2);
-//        list1.add(3);
-//        list1.add(4);
-//
-//        list2.add(1);
-//        list2.add(3);
-//        list2.add(5);
-//        list2.add(4);
-//
-//        System.out.println(intersect(list1,list2));
-//        System.out.println(anotherIntersect(list1,list2));
-
-        // Printing All posting arr
-//        for(Token e : posting)
-//            System.out.println(e);
-
-        // Printing All postingList arr
-//        for(Posting e : postingList)
-//            System.out.println(e);
     }
 
     static void genaratePosting(Set<String> term, int docID){
@@ -96,4 +83,5 @@ public class Main {
         list1.retainAll(list2);
         return list1;
     }
+
 }

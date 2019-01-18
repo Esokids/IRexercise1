@@ -11,19 +11,27 @@ public class ReadFile {
             while(scanner.hasNextLine())
                 text += scanner.nextLine()+" ";
             scanner.close();
-        }catch (Exception e){
-            System.out.println("error " + e);
+        } catch (FileNotFoundException e){
+
+        } catch (Exception e){
+            System.out.println("Exception "+e);
         }
         return text.toLowerCase();
     }
 
-    public static String readURL(URL url) throws IOException {
+    public static String readURL(URL url) {
+        String text = "";
+        try {
             BufferedReader buf = new BufferedReader(new InputStreamReader(url.openStream()));
             String thisLine;
-            String text = "";
             while ((thisLine = buf.readLine()) != null)
                 text += thisLine + " ";
             buf.close();
+        } catch (IOException e){
+
+        } catch (Exception e){
+            System.out.println("Exception "+e);
+        }
         return text;
     }
 }
