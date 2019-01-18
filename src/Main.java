@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Tokenizing and Preprocessing
-        String delim = "\\ |\\;|\\:|\\.";
+        String delim = "\\ |\\;|\\:|\\.|\\-|\\_|\\!|\\?|\\\"|\\'";
 
         // Generate name of files.
         String path[] = new String[100];
